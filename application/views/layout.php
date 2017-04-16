@@ -125,7 +125,7 @@
                 <li class="header">RECRUITMENT</li>
                 <li class="treeview">
                     <a href="<?= site_url('candidate') ?>">
-                    <i class="fa fa-briefcase"></i> <span>Calon Pegawai</span>
+                    <i class="fa fa-briefcase"></i> <span>Daftar Kandidat</span>
                     </a>
                 </li>
                 <li class="treeview">

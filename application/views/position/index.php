@@ -39,14 +39,16 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php if ($positions): foreach ($positions as $position): ?>
                 <tr>
                     <td>1</td>
-                    <td>Project Manager</td>
+                    <td><?= $position->name ?></td>
                     <td>
-                        <a href="<?=site_url('position/detail/1')?>" class="btn btn-info"><i class="fa fa-info"> Detail</i></a>
-                        <a href="<?=site_url('position/delete/1')?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini?')"><i class="fa fa-remove"> Hapus</i></a>
+                        <a href="<?=site_url('position/detail/'.$position->id)?>" class="btn btn-info"><i class="fa fa-info"> Detail</i></a>
+                        <a href="<?=site_url('position/delete/'.$position->id)?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini?')"><i class="fa fa-remove"> Hapus</i></a>
                     </td>
                 </tr>
+                <?php endforeach; endif;?>
                 </tbody>
                 <tfoot>
                 <tr>
@@ -66,58 +68,55 @@
                                 aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Tambah Jabatan</h4>
                 </div>
+                <form class="form-horizontal" method="post" action="<?=site_url('position/store')?>">
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post">
                         <div class="box-body" id="daftarKriteria">
                             <div class="row">
                                 <div class="form-group col-md-8">
                                     <label for="nama" class="col-sm-3 control-label">Nama Jabatan</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                               placeholder="Isikan..."/>
+                                               placeholder="Isikan..." required/>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" id="row1">
-                                <div class="form-group col-md-4">
-                                    <label for="kriteria" class="col-sm-4 control-label">Kriteria</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="kriteria" name="kriteria[]"
-                                               placeholder="Isikan..."/>
-                                    </div>
+                            <?php foreach ($criteria as $key => $value): ?>
+                            <div class="row" style="margin: 1.5em">
+                                <input type="hidden" required name="criteria_id[]" value="<?=$key?>">
+                                <div class="form-group col-md-5">
+                                    <label for="kriteria" class="control-label"><?=$value?></label>
                                 </div>
-                                <div class="form-group col-md-2">
+                                <div class="form-group col-md-3">
                                     <label for="bobot" class="col-sm-4 control-label">Bobot</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="bobot" name="bobot[]"
-                                               placeholder="Isikan..."/>
+                                        <select name="bobot[]" id="bobot" class="form-control" required>
+                                            <option value="">-- Pilih --</option>
+                                            <?php for ($j = 1; $j <= 5; $j++): ?>
+                                                <option value="<?=$j?>" <?= $j != 5 ? '' : 'selected'?>><?=$j?></option>
+                                            <?php endfor; ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class='form-group col-md-4'>
                                     <label for='tahap' class='col-sm-4 control-label'>Tahap</label>
                                     <div class='col-sm-8'>
-                                        <select name='tahap[]' id='tahap' class='form-control'>
-                                            <option value='0'>Wawancara</option>
+                                        <select name='tahap[]' id='tahap' class='form-control' required>
+                                            <option value="">-- Pilih --</option>
+                                            <option value='0' selected>Wawancara</option>
                                             <option value='1'>Uji Kemampuan</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
+                            <?php endforeach; ?>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-2">
-                                <button class="btn btn-primary" type="button" onclick="addRow()"><i class="fa fa-plus"> Tambah Kriteria</i></button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Tambah Jabatan</button>
+                    <button type="submit" class="btn btn-success">Tambah Jabatan</button>
                 </div>
+                </form>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </section>
-
-<?php $this->load->view('position/scripts') ?>

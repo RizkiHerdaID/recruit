@@ -28,63 +28,55 @@
         </div>
         <!-- Body -->
         <div class="box-body row">
-            <form class="form-horizontal col-md-12">
-                <div class="box-body">
-                    <form class="form-horizontal" method="post">
-                        <div class="box-body" id="daftarKriteria">
-                            <div class="row">
-                                <div class="form-group col-md-7">
-                                    <label for="nama" class="col-sm-3 control-label">Nama Jabatan</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                               placeholder="Isikan..."/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" id="row1">
-                                <div class="form-group col-md-4">
-                                    <label for="kriteria" class="col-sm-4 control-label">Kriteria</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="kriteria" name="kriteria[]"
-                                               placeholder="Isikan..."/>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="bobot" class="col-sm-4 control-label">Bobot</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="bobot" name="bobot[]"
-                                               placeholder="Isikan..."/>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="tahap" class="col-sm-4 control-label">Tahap</label>
-                                    <div class="col-sm-8">
-                                        <select name="tahap[]" id="tahap" class="form-control">
-                                            <option value="0">Wawancara</option>
-                                            <option value="1">Uji Kemampuan</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class='form-group col-md-2'>
-                                    <button class='btn btn-danger' type='button' onclick='removeRow(1)'><i class='fa fa-minus'></i></button>
-                                </div>
-                            </div>
-                        </div>
+            <div class="box-body">
+                <form class="form-horizontal" method="post" action="<?=site_url('position/update/'.$this->uri->segment(3, 0))?>">
+                    <input type="hidden" value="<?=$position[0]->id?>">
+                    <div class="box-body" id="daftarKriteria">
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-2">
-                                <button class="btn btn-primary" type="button" onclick="addRow()"><i class="fa fa-plus"> Tambah Kriteria</i></button>
+                            <div class="form-group col-md-7">
+                                <label for="nama" class="col-sm-3 control-label">Nama Jabatan</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="nama" name="nama"
+                                           value="<?=$position[0]->name?>" placeholder="Isikan..."/>
+                                </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Simpan Perubahan</button>
+                        <?php $i = 0; foreach ($criteria as $key => $value): ?>
+                        <div class="row" style="margin-left: 2em">
+                            <input type="hidden" required name="id[]" value="<?=$value->id?>">
+                            <div class="form-group col-md-4">
+                                <label for="kriteria" class="control-label"><?=$criteriaName[$value->criteria_id]?></label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="bobot" class="col-sm-4 control-label">Bobot</label>
+                                <div class="col-sm-8">
+                                    <select name="bobot[]" id="bobot" class="form-control">
+                                        <option value="">-- Pilih --</option>
+                                        <?php for ($j = 1; $j <= 5; $j++): ?>
+                                            <option value="<?=$j?>" <?=$value->weight != $j ? '' : 'selected' ?>><?=$j?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="tahap" class="col-sm-4 control-label">Tahap</label>
+                                <div class="col-sm-8">
+                                    <select name="tahap[]" id="tahap" class="form-control">
+                                        <option value="0" <?=$value->stage !== '0' ? '' : 'selected'?>>Wawancara</option>
+                                        <option value="1" <?=$value->stage !== '1' ? '' : 'selected'?>>Uji Kemampuan</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
-            </form>
+                        <?php endforeach; ?>
+                    </div>
+                    <br>
+                    <div class="modal-footer">
+                        <a href="<?=site_url('position')?>" class="btn btn-default" data-dismiss="modal">Kembali</a>
+                        <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
-
-<?php $this->load->view('position/scripts') ?>
