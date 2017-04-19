@@ -36,47 +36,23 @@
                     <th>No. Telp</th>
                     <th>Email</th>
                     <th>Status</th>
-                    <th>Nilai</th>
                     <th width="20%">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Belum Ada</td>
-                    <td>Rizki Herdatullah</td>
-                    <td>Laki-Laki</td>
-                    <td>-</td>
-                    <td>rizkiherda@gmail.com</td>
-                    <td><span class="label label-warning">Tahap 1 - Dilanjutkan</span></td>
-                    <td>23</td>
-                    <td>
-                        <a href="<?=site_url('competency/test/1')?>" class="btn btn-warning"><i class="fa fa-street-view"> Uji Kemampuan</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Belum Ada</td>
-                    <td>Ardyan Sukma Bryantara</td>
-                    <td>Laki-Laki</td>
-                    <td>-</td>
-                    <td>bryantara@gmail.com</td>
-                    <td><span class="label label-success">Tahap 2 - Dilanjutkan</span></td>
-                    <td>27</td>
-                    <td>
-                        <a href="<?=site_url('competency/edit/1')?>" class="btn btn-info"><i class="fa fa-street-view"> Ganti</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Belum Ada</td>
-                    <td>Diah Ayunda</td>
-                    <td>Perempuan</td>
-                    <td>-</td>
-                    <td>diah@ayunda1234.com</td>
-                    <td><span class="label label-danger">Tahap 1 - Ditolak</span></td>
-                    <td>12</td>
-                    <td>
-                        <button href="<?=site_url('competency/detail/1')?>" class="btn btn-muted" disabled><i class="fa fa-street-view"> Uji Kemampuan</i></button>
-                    </td>
-                </tr>
+                <?php if ($candidates): foreach ($candidates as $candidate): ?>
+                    <tr>
+                        <td>Belum Ada</td>
+                        <td><?=$candidate->name?></td>
+                        <td><?=$candidate->gender == '1' ? 'Laki-laki': 'Perempuan';?></td>
+                        <td><?=$candidate->phone?></td>
+                        <td><?=$candidate->email?></td>
+                        <td><span class="label label-<?=$candidate->status === '0' ? 'default' : ($candidate->status === '1' ? 'warning' : 'success') ?>"><?=$candidate->status === '0' ? 'Siap Tahap Pertama' : ($candidate->status === '1' ? 'Siap Tahap Kedua' : 'Selesai Semua Tahap') ?></span></td>
+                        <td>
+                            <a href="<?=site_url('interview/test/1')?>" class="btn btn-success"><i class="fa fa-street-view"> Wawancara</i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; endif; ?>
                 </tbody>
                 <tfoot>
                 <tr>
@@ -86,7 +62,6 @@
                     <th>No. Telp</th>
                     <th>Email</th>
                     <th>Status</th>
-                    <th>Nilai</th>
                     <th>Aksi</th>
                 </tr>
                 </tfoot>

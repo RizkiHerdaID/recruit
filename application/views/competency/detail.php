@@ -158,15 +158,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="rencana_penempatan" class="col-sm-4 control-label">Rencana Penempatan</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="rencana_penempatan" name="rencana_penempatan" />
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="rencana_jabatan" class="col-sm-4 control-label">Rencana Jabatan</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="rencana_jabatan" name="rencana_jabatan" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rencana_penempatan" class="col-sm-4 control-label">Rencana Penempatan</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="rencana_penempatan" name="rencana_penempatan" />
                             </div>
                         </div>
                         <?php for ($i = 6; $i <= 10; $i++) :?>
@@ -174,11 +174,11 @@
                             <label for="nilai" class="col-sm-4 control-label">Kriteria <?=$i?></label>
                             <div class="col-sm-8">
                                 <select class="form-control" name="nilai[]">
-                                    <option value="1">1 Tidak Cocok</option>
-                                    <option value="2">2 Kurang Cocok</option>
-                                    <option value="3">3 Cukup Cocok</option>
-                                    <option value="4">4 Cocok</option>
-                                    <option value="5">5 Sangat Cocok</option>
+                                    <option value="1">1 - Tidak Cocok</option>
+                                    <option value="2">2 - Kurang Cocok</option>
+                                    <option value="3">3 - Cukup Cocok</option>
+                                    <option value="4">4 - Cocok</option>
+                                    <option value="5">5 - Sangat Cocok</option>
                                 </select>
                             </div>
                         </div>

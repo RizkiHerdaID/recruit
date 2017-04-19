@@ -7,6 +7,9 @@ class Dashboard extends CI_Controller
         parent::__construct();
     }
 
+    /**
+     * Menampilkan Halaman Dashboard Yang berisi Deskripsi Perusahaan
+     */
     function index()
     {
         $data['page'] = 'dashboard';
