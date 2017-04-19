@@ -15,6 +15,27 @@ class Criteria_m extends CI_Model
         return $this->db->get('criteria')->result();
     }
 
+    public function get_weight_value($idPosition)
+    {
+        $this->db->select('weight_value');
+        $this->db->where('position_id', $idPosition);
+        return $this->db->get('criteria')->result();
+    }
+
+    public function get_interview_criteria()
+    {
+        $criteria = $this->arrayCriteria;
+        $criteria = array_slice($criteria, 0, 7);
+        return $criteria;
+    }
+
+    public function get_competency_criteria()
+    {
+        $criteria = $this->arrayCriteria;
+        $criteria = array_slice($criteria, 7, 13);
+        return $criteria;
+    }
+
     public function get_total_weight($positionId)
     {
         $this->db->select('SUM(weight) as total');

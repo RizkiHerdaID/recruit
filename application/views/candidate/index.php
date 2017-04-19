@@ -47,7 +47,7 @@
                     <tr>
                         <td>Belum Ada</td>
                         <td><?=$candidate->name?></td>
-                        <td><?=$candidate->gender == '1' ? 'Laki-laki': 'Perempuan';?></td>
+                        <td><?=$candidate->gender == '0' ? 'Laki-laki': 'Perempuan';?></td>
                         <td><?=$candidate->phone?></td>
                         <td><?=$candidate->email?></td>
                         <td><span class="label label-<?=$candidate->status === '0' ? 'default' : ($candidate->status === '1' ? 'warning' : 'success') ?>"><?=$candidate->status === '0' ? 'Siap Tahap Pertama' : ($candidate->status === '1' ? 'Siap Tahap Kedua' : 'Selesai Semua Tahap') ?></span></td>

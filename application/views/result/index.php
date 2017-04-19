@@ -33,39 +33,38 @@
                     <th width="10%">Foto</th>
                     <th width="20%">Nama</th>
                     <th>Jenis Kelamin</th>
-                    <th>Nilai Wawancara</th>
-                    <th>Nilai Uji Kemampuan</th>
-                    <th>Presentase</th>
                     <th>Rencana Jabatan</th>
+                    <th>Nilai</th>
+                    <th>Presentase</th>
                     <th>Rencana Penempatan</th>
                     <th width="15%">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
+                <?php if ($candidates): foreach ($candidates as $candidate): ?>
                 <tr>
                     <td>Belum Ada</td>
-                    <td>Rizki Herdatullah</td>
-                    <td>Laki-Laki</td>
-                    <td>27</td>
-                    <td>28</td>
-                    <td>80.37%</td>
-                    <td>Software Engineer</td>
-                    <td>Bandung</td>
+                    <td><?=$candidate->name?></td>
+                    <td><?=$candidate->gender == '0' ? 'Laki-laki': 'Perempuan';?></td>
+                    <td><?=$candidate->position?></td>
+                    <td><?=substr($candidate->score, 0, 5)?></td>
+                    <td><?=substr($candidate->percentage, 0, 5)?> %</td>
+                    <td><?=$candidate->placement_plan?></td>
                     <td>
                         <a href="<?=site_url('result/detail/1')?>" class="btn btn-info btn-sm"><i class="fa fa-info"> Detail</i></a>
                         <a href="<?=site_url('result/recruit/1')?>" class="btn btn-success btn-sm"><i class="fa fa-check"> Rekrut</i></a>
                     </td>
                 </tr>
+                <?php endforeach; endif;?>
                 </tbody>
                 <tfoot>
                 <tr>
                     <th width="10%">Foto</th>
                     <th width="20%">Nama</th>
                     <th>Jenis Kelamin</th>
-                    <th>Nilai Wawancara</th>
-                    <th>Nilai Uji Kemampuan</th>
-                    <th>Presentase</th>
                     <th>Rencana Jabatan</th>
+                    <th>Nilai</th>
+                    <th>Presentase</th>
                     <th>Rencana Penempatan</th>
                     <th width="15%">Aksi</th>
                 </tr>

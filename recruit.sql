@@ -71,7 +71,7 @@ CREATE TABLE `candidate` (
 -- Dumping data untuk tabel `candidate`
 --
 
-INSERT INTO `candidate` (`id`, `position_id`, `name`, `born_in`, `born_at`, `gender`, `address`, `phone`, `formal_education`, `unformal_education`, `organization_experience`, `work_experience`, `skills`, ` placement_plan`, `photo`, `email`, `last_education`, `examiner_comment`, `interviewer_comment`, `deleted`, `interviewed_at`, `examined_at`, `status`) VALUES
+INSERT INTO `candidate` (`id`, `position_id`, `name`, `born_in`, `born_at`, `gender`, `address`, `phone`, `formal_education`, `unformal_education`, `organization_experience`, `work_experience`, `skills`, placement_plan, `photo`, `email`, `last_education`, `examiner_comment`, `interviewer_comment`, `deleted`, `interviewed_at`, `examined_at`, `status`) VALUES
 (1, NULL, 'Rizki Herdatullah', 'Sumenep', '0000-00-00 00:00:00', '0', 'Probolinggo', '082234367866', '-', '-', 'AIESEC\r\nHIMASIF', 'Mascitra.com', 'Programming', NULL, '', 'rizkiherda@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 2),
 (2, NULL, 'Ardyan', 'Jember', '0000-00-00 00:00:00', '0', 'Jember', '089893824', '', '', '', '', '', NULL, '', 'ardyan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 0),
 (3, NULL, 'Redi', 'Probolinggo', '2017-04-18 13:30:45', '0', 'Jember', '08333234324', '', '', '', '', '', NULL, '', 'redi@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 1);

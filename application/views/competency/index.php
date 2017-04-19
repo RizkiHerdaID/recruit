@@ -49,7 +49,7 @@
                         <td><?=$candidate->email?></td>
                         <td><span class="label label-<?=$candidate->status === '0' ? 'default' : ($candidate->status === '1' ? 'warning' : 'success') ?>"><?=$candidate->status === '0' ? 'Siap Tahap Pertama' : ($candidate->status === '1' ? 'Siap Tahap Kedua' : 'Selesai Semua Tahap') ?></span></td>
                         <td>
-                            <a href="<?=site_url('interview/test/1')?>" class="btn btn-success"><i class="fa fa-street-view"> Wawancara</i></a>
+                            <a href="<?=site_url('competency/test/'.$candidate->id)?>" class="btn btn-success"><i class="fa fa-street-view"> Uji Kemampuan</i></a>
                         </td>
                     </tr>
                 <?php endforeach; endif; ?>

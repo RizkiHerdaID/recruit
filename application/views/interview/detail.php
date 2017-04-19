@@ -139,35 +139,40 @@
                 </form>
             </div>
             <div class="tab-pane" id="evaluation">
-                <form class="form-horizontal col-md-8" enctype="multipart/form-data" method="post">
+                <form class="form-horizontal col-md-8" method="post" action="<?=site_url('interview/store/'.$candidate[0]->id)?>">
                     <div  id="evaluationForm">
                         <div class="form-group">
                             <label for="pendidikan_terakhir" class="col-sm-4 control-label">Pendidikan Terakhir</label>
                             <div class="col-sm-8">
-                                <select class="form-control" name="pendidikan_terakhir">
+                                <select class="form-control" name="last_education" required>
                                     <option value="">-- Pilih Salah Satu --</option>
-                                    <option value="Tidak Sekolah">Tidak Sekolah</option>
-                                    <option value="TK">TK</option>
-                                    <option value="SD">SD</option>
-                                    <option value="SLTP">SLTP</option>
-                                    <option value="SLTA">SLTA</option>
-                                    <option value="S1">S1</option>
-                                    <option value="S2">S2</option>
-                                    <option value="S3">S3</option>
+                                    <option value="0">Tidak Sekolah</option>
+                                    <option value="1">TK</option>
+                                    <option value="2">SD</option>
+                                    <option value="3">SLTP</option>
+                                    <option value="4">SLTA</option>
+                                    <option value="5">S1</option>
+                                    <option value="6">S2</option>
+                                    <option value="7">S3</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="rencana_jabatan" class="col-sm-4 control-label">Rencana Jabatan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="rencana_jabatan" name="rencana_jabatan" />
+                                <select class="form-control" name="position_id" required>
+                                    <option value="">-- Pilih Salah Satu --</option>
+                                    <?php foreach ($positions as $position): ?>
+                                        <option value="<?=$position->id?>"><?=$position->name?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
-                        <?php for ($i = 1; $i <= 5; $i++) :?>
+                        <?php if(isset($criteria)): foreach ($criteria as $key => $value) :?>
                         <div class="form-group">
-                            <label for="nilai" class="col-sm-4 control-label">Kriteria <?=$i?></label>
+                            <label for="scores" class="col-sm-4 control-label"><?=$value?></label>
                             <div class="col-sm-8">
-                                <select class="form-control" name="nilai[]">
+                                <select class="form-control" name="scores[]">
                                     <option value="1">1 - Tidak Cocok</option>
                                     <option value="2">2 - Kurang Cocok</option>
                                     <option value="3">3 - Cukup Cocok</option>
@@ -176,12 +181,12 @@
                                 </select>
                             </div>
                         </div>
-                        <?php endfor; ?>
+                        <?php endforeach; endif;?>
                     </div>
                     <div class="form-group">
                         <label for="komentar" class="col-sm-4 control-label">Komentar Pewawancara</label>
                         <div class="col-sm-8">
-                            <textarea name="komentar" class="form-control" rows="5"></textarea>
+                            <textarea name="interviewer_comment" class="form-control" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
