@@ -2,11 +2,23 @@
 
 class Criteria_m extends CI_Model
 {
+    /**
+     * Input Data Kriteria
+     *
+     * @param $data
+     * @return mixed
+     */
     public function insert($data)
     {
         return $this->db->insert('criteria', $data);
     }
 
+    /**
+     * Ambil Semua Data Kriteria
+     *
+     * @param array $where - Array Filter berupa Where pada SQL
+     * @return mixed
+     */
     public function get_all($where = array())
     {
         if ($where){
@@ -15,6 +27,12 @@ class Criteria_m extends CI_Model
         return $this->db->get('criteria')->result();
     }
 
+    /**
+     * Ambil Bobot Awal tiap Kriteria dengan ID Jabatan sebagai parameter
+     *
+     * @param $idPosition
+     * @return mixed
+     */
     public function get_weight_value($idPosition)
     {
         $this->db->select('weight_value');
@@ -22,6 +40,11 @@ class Criteria_m extends CI_Model
         return $this->db->get('criteria')->result();
     }
 
+    /**
+     * Ambil Daftar Kriteria untuk Tahap Wawancara
+     *
+     * @return array
+     */
     public function get_interview_criteria()
     {
         $criteria = $this->arrayCriteria;
@@ -29,6 +52,10 @@ class Criteria_m extends CI_Model
         return $criteria;
     }
 
+    /**
+     * Ambil Daftar Kriteria untuk Tahap Uji Kemampuan
+     * @return array
+     */
     public function get_competency_criteria()
     {
         $criteria = $this->arrayCriteria;
@@ -36,6 +63,12 @@ class Criteria_m extends CI_Model
         return $criteria;
     }
 
+    /**
+     * Jumlahkan Bobot yang akan digunakan untuk menghitung nilai Bobot Awal
+     *
+     * @param $positionId
+     * @return mixed
+     */
     public function get_total_weight($positionId)
     {
         $this->db->select('SUM(weight) as total');
@@ -44,12 +77,25 @@ class Criteria_m extends CI_Model
         return $result[0]->total;
     }
 
-    public function update_weight_and_stage($updateData, $id)
+    /**
+     * Update Bobot
+     *
+     * @param $updateData
+     * @param $id
+     * @return mixed
+     */
+    public function update_weight($updateData, $id)
     {
         $this->db->where('id', $id);
         return $this->db->update('criteria', $updateData);
     }
 
+    /**
+     * @param $updateData
+     * @param $criteriaId
+     * @param $positionID
+     * @return mixed
+     */
     public function update_weight_value($updateData, $criteriaId, $positionID)
     {
         $this->db->where('position_id', $positionID);
@@ -57,11 +103,17 @@ class Criteria_m extends CI_Model
         return $this->db->update('criteria', $updateData);
     }
 
+    /**
+     * @return array
+     */
     public function get_criteria()
     {
         return $this->arrayCriteria;
     }
 
+    /**
+     * @var array
+     */
     private $arrayCriteria = array(
         'CRI001' => 'Latar Belakang',
         'CRI002' => 'Pengalaman Kerja',

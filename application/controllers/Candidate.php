@@ -24,8 +24,11 @@ class Candidate extends CI_Controller
     public function store()
     {
         $data = $this->input->post();
-        $this->candidate_m->insert($data);
-        $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Calon Kandidat telah di Tambahkan'));
+        if($this->candidate_m->insert($data)) {
+            $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Calon Kandidat telah di Tambahkan'));
+        } else {
+            $this->session->set_flashdata('message', array('danger', '<b>Terjadi Kesalahan!</b> Data Calon Kandidat tidak dapat di Tambahkan'));
+        }
         redirect('candidate');
     }
 
@@ -38,8 +41,11 @@ class Candidate extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = $this->input->post();
-        $this->candidate_m->update($data, $id);
-        $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Calon Kandidat telah di Update'));
+        if($this->candidate_m->update($data, $id)) {
+            $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Calon Kandidat telah di Update'));
+        } else {
+            $this->session->set_flashdata('message', array('success', '<b>Terjadi Kesalahan!<b/> Data Calon Kandidat tidak dapat di Update'));
+        }
         if(!$redirect){
             redirect('candidate/detail/'.$id);
         } else {

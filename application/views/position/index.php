@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="modal fade" tabindex="-1" role="dialog" id="add">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -70,46 +70,34 @@
                 </div>
                 <form class="form-horizontal" method="post" action="<?=site_url('position/store')?>">
                 <div class="modal-body">
-                        <div class="box-body" id="daftarKriteria">
-                            <div class="row">
-                                <div class="form-group col-md-8">
-                                    <label for="nama" class="col-sm-3 control-label">Nama Jabatan</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                               placeholder="Isikan..." required/>
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="nama" class="col-sm-3 control-label">Nama Jabatan</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nama" name="nama"
+                                       placeholder="Isikan..." required/>
                             </div>
-                            <?php foreach ($criteria as $key => $value): ?>
-                            <div class="row" style="margin: 1.5em">
-                                <input type="hidden" required name="criteria_id[]" value="<?=$key?>">
-                                <div class="form-group col-md-5">
-                                    <label for="kriteria" class="control-label"><?=$value?></label>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="bobot" class="col-sm-4 control-label">Bobot</label>
-                                    <div class="col-sm-8">
-                                        <select name="bobot[]" id="bobot" class="form-control" required>
-                                            <option value="">-- Pilih --</option>
-                                            <?php for ($j = 1; $j <= 5; $j++): ?>
-                                                <option value="<?=$j?>" <?= $j != 5 ? '' : 'selected'?>><?=$j?></option>
-                                            <?php endfor; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class='form-group col-md-4'>
-                                    <label for='tahap' class='col-sm-4 control-label'>Tahap</label>
-                                    <div class='col-sm-8'>
-                                        <select name='tahap[]' id='tahap' class='form-control' required>
-                                            <option value="">-- Pilih --</option>
-                                            <option value='0' selected>Wawancara</option>
-                                            <option value='1'>Uji Kemampuan</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endforeach; ?>
                         </div>
+                    </div>
+                    <?php foreach ($criteria as $key => $value): ?>
+                    <div class="row" style="margin: 1.5em">
+                        <input type="hidden" required name="criteria_id[]" value="<?=$key?>">
+                        <div class="form-group col-md-8">
+                            <label for="kriteria" class="control-label"><?=$value?></label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="bobot" class="col-sm-4 control-label">Bobot</label>
+                            <div class="col-sm-8">
+                                <select name="bobot[]" id="bobot" class="form-control" required>
+                                    <option value="">-- Pilih --</option>
+                                    <?php for ($j = 1; $j <= 5; $j++): ?>
+                                        <option value="<?=$j?>" <?= $j != 5 ? '' : 'selected'?>><?=$j?></option>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

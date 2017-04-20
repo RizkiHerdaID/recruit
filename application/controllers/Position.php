@@ -31,7 +31,9 @@ class Position extends CI_Controller
         // Tambahkan Data Baru ke Tabel Posisi
         $data = $this->input->post();
         $position = array('name' => $data['nama']);
-        $this->position_m->insert($position);
+        if(!$this->position_m->insert($position)) {
+            $this->session->set_flashdata('message', array('danger', '<b>Gagal!</b> Mohon Cek Nama Jabatan Anda'));
+        }
         unset($data['nama']); // Hapus field nama dari array data
         // Tambahkan Setiap Bobot Kriteria dan Tahap Kriteria ke Table Kriteria
         $positionId = $this->position_m->last_id();
@@ -40,9 +42,12 @@ class Position extends CI_Controller
                 'position_id' => $positionId,
                 'criteria_id' => $data['criteria_id'][$key],
                 'weight' => $data['bobot'][$key],
-                'stage' => $data['tahap'][$key],
             );
-            $this->criteria_m->insert($insertCriteria);
+            if(!$this->criteria_m->insert($insertCriteria)){
+                $this->session->set_flashdata('message', array('danger', '<b>Gagal!</b> Kesalahan Saat Menambahkan Bobot Kriteria'));
+                $this->position_m->destroy_last_id();
+                redirect('position');
+            }
         }
         // Hitung Bobot Awal untuk Setiap Kriteria
         $this->calculate_weight_value();
@@ -67,26 +72,33 @@ class Position extends CI_Controller
     /**
      * Update Data Jabatan
      *
-     * @param $positionId
+     * @param $positionId - ID Jabatan yang akan di Update
      */
     public function update($positionId)
     {
         $data = $this->input->post();
-        // Update Bobot & Tahap Setiap Kriteria
-        foreach ($data['bobot'] as $key => $value) {
+        // Update Bobot Kriteria
+        foreach ($data['bobot'] as $key => $value) { // Diulang sebanyak 13 kali sesuai banyaknya kriteria. $key 0..12
             $updateCriteria = array(
                 'weight' => $data['bobot'][$key],
-                'stage' => $data['tahap'][$key],
             );
-            $this->criteria_m->update_weight_and_stage($updateCriteria, $data['id'][$key]);
+            // Update Bobot Kriteria
+            $this->criteria_m->update_weight($updateCriteria, $data['id'][$key]); // id = ID Jabatan & Bobot untuk Kriteria ke $key
         }
+        // Update Nilai Bobot Awal
         $this->calculate_weight_value($positionId);
         $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Jabatan telah di Update'));
         redirect('position');
     }
 
-    public function delete()
+    /**
+     * Menghapus dengan cara mengganti kolom deleted menjadi '1' pada tabel Position
+     *
+     * @param $idPosition - ID Jabatan yang akan di hapus
+     */
+    public function delete($idPosition)
     {
+        $this->position_m->delete($idPosition);
         $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Jabatan telah di Hapus'));
         redirect('position');
     }

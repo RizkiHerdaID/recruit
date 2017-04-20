@@ -21,12 +21,11 @@ class Competency extends CI_Controller
         $this->load->view('layout', $data);
     }
 
-    public function edit($candidateId)
-    {
-        $data['page'] = 'competency.detail';
-        $this->load->view('layout', $data);
-    }
-
+    /**
+     * Menampilkan Form untuk Uji Kemampuan
+     *
+     * @param $candidateId
+     */
     public function test($candidateId)
     {
         $data['candidate'] = $this->candidate_m->get($candidateId);
@@ -36,14 +35,23 @@ class Competency extends CI_Controller
         $this->load->view('layout', $data);
     }
 
+    /**
+     * Menyimpan Hasil Penilaian Tahap Uji Kemampuan
+     *
+     * @param $candidateId
+     */
     public function store($candidateId)
     {
         $data = $this->input->post();
+        // Ubah Status Kandidat Menjadi Selesai Semua Tahap
         $data['status'] = 2;
         unset($data['scores']);
         $this->candidate_m->update($data, $candidateId);
+        // Dapatkan Input Nilai dalam bentuk Array
         $scores = $this->input->post('scores');
+        // Ambil Daftar Kriteria beserta ID
         $criteriaIds = array_keys($this->criteria_m->get_competency_criteria());
+        // Input Nilai berdasarkan ID Kandidat dan ID Kriteria
         foreach ($scores as $score){
             $data = array(
                 'candidate_id' => $candidateId,

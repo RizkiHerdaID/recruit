@@ -143,11 +143,6 @@
                     <i class="fa fa-flag"></i> <span>Hasil Penilaian</span>
                     </a>
                 </li>
-                <li class="treeview">
-                    <a href="<?= site_url('result/archive') ?>">
-                    <i class="fa fa-archive"></i> <span>Arsip</span>
-                    </a>
-                </li>
                 <li class="header">MANAGEMENT</li>
                 <li class="treeview">
                     <a href="#">

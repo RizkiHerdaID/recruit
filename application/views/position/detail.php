@@ -33,7 +33,7 @@
                     <input type="hidden" value="<?=$position[0]->id?>">
                     <div class="box-body" id="daftarKriteria">
                         <div class="row">
-                            <div class="form-group col-md-7">
+                            <div class="form-group col-md-6">
                                 <label for="nama" class="col-sm-3 control-label">Nama Jabatan</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="nama" name="nama"
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <?php $i = 0; foreach ($criteria as $key => $value): ?>
-                        <div class="row" style="margin-left: 2em">
+                        <div class="row" style="margin-left: 1em">
                             <input type="hidden" required name="id[]" value="<?=$value->id?>">
                             <div class="form-group col-md-4">
                                 <label for="kriteria" class="control-label"><?=$criteriaName[$value->criteria_id]?></label>
@@ -55,15 +55,6 @@
                                         <?php for ($j = 1; $j <= 5; $j++): ?>
                                             <option value="<?=$j?>" <?=$value->weight != $j ? '' : 'selected' ?>><?=$j?></option>
                                         <?php endfor; ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="tahap" class="col-sm-4 control-label">Tahap</label>
-                                <div class="col-sm-8">
-                                    <select name="tahap[]" id="tahap" class="form-control">
-                                        <option value="0" <?=$value->stage !== '0' ? '' : 'selected'?>>Wawancara</option>
-                                        <option value="1" <?=$value->stage !== '1' ? '' : 'selected'?>>Uji Kemampuan</option>
                                     </select>
                                 </div>
                             </div>

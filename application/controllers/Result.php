@@ -10,6 +10,9 @@ class Result extends CI_Controller
         $this->load->model('calculation_m');
     }
 
+    /**
+     * Menampilkan Daftar Rekomendasi
+     */
     function index()
     {
         $data['candidates'] = $this->score_calculation();
@@ -17,6 +20,9 @@ class Result extends CI_Controller
         $this->load->view('layout', $data);
     }
 
+    /**
+     * @return mixed
+     */
     public function score_calculation()
     {
         $candidates = $this->candidate_m->get_all_result();
@@ -31,6 +37,7 @@ class Result extends CI_Controller
             foreach ($scores as $keyScore => $score) {
                 $sVector[$candidate->position_id][$candidate->id] *= pow($score->score, $weight_value[$keyScore]->weight_value);
             }
+            // Tambahkan Hasil Vektor S kedalam Array Kandidat sebagai sVector dan Score (Nilai)
             $candidate->sVector = $sVector[$candidate->position_id][$candidate->id];
             $candidate->score = $candidate->sVector * 20;
         }
@@ -39,6 +46,7 @@ class Result extends CI_Controller
         foreach ($sVector as $key => $value){
             $sVectorSum[$key] = array_sum($value);
         }
+        // Tambahkan Hasil Vektor V kedalam Array Kandidat sebagai vVector dan Percentage (Presentase)
         foreach ($candidates as $keyCandidate => $candidate) {
             $candidate->vVector = $candidate->sVector / $sVectorSum[$candidate->position_id];
             $candidate->percentage = $candidate->vVector * 100;
@@ -46,18 +54,18 @@ class Result extends CI_Controller
         return $candidates;
     }
 
-    function archive()
-    {
-        $data['page'] = 'result.archive';
-        $this->load->view('layout', $data);
-    }
-
+    /**
+     * @param $resultID
+     */
     public function detail($resultID)
     {
         $data['page'] = 'result.detail';
         $this->load->view('layout', $data);
     }
 
+    /**
+     *
+     */
     public function recruit()
     {
         $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data telah di tambahkan sebagai Pegawai Baru'));
