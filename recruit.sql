@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 19 Apr 2017 pada 21.15
+-- Generation Time: 20 Apr 2017 pada 00.12
 -- Versi Server: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -119,9 +119,10 @@ CREATE TABLE `candidate` (
 --
 
 INSERT INTO `candidate` (`id`, `position_id`, `name`, `born_in`, `born_at`, `gender`, `address`, `phone`, `formal_education`, `unformal_education`, `organization_experience`, `work_experience`, `skills`, `placement_plan`, `photo`, `email`, `last_education`, `examiner_comment`, `interviewer_comment`, `deleted`, `interviewed_at`, `examined_at`, `status`, `position_score`, `position_percentage`) VALUES
-(1, 2, 'Rizki Herdatullah', 'Sumenep', '2017-04-19 20:35:10', '0', 'Probolinggo', '082234367866', '-', '-', 'AIESEC\r\nHIMASIF', 'Mascitra.com', 'Programming', 'Sumenep', '', 'rizkiherda@gmail.com', 5, 'Ok', 'Good', NULL, NULL, NULL, 2, NULL, NULL),
-(2, 1, 'Ardyan', 'Jember', '2017-04-19 20:18:49', '0', 'Jember', '089893824', '', '', '', '', '', 'Jakarta', '', 'ardyan@gmail.com', 6, 'Good', 'Siap', NULL, NULL, NULL, 2, NULL, NULL),
-(3, 2, 'Redi', 'Probolinggo', '2017-04-19 21:08:23', '0', 'Jember', '08333234324', '', '', '', '', '', 'Surabaya', '', 'redi@gmail.com', 5, 'Sip', 'Ok', NULL, NULL, NULL, 2, NULL, NULL);
+(1, 2, 'Rizki Herdatullah', 'Sumenep', '2017-04-20 00:02:04', '0', 'Probolinggo', '082234367866', '-', '-', 'AIESEC', 'Mascitra.com', 'Programming', 'Sumenep', '', 'rizkiherda@gmail.com', 5, 'Ok', 'Good', '0', NULL, NULL, 2, NULL, NULL),
+(2, 1, 'Ardyan', 'Jember', '2017-04-20 00:02:04', '0', 'Jember', '089893824', '', '', '', '', '', 'Jakarta', '', 'ardyan@gmail.com', 6, 'Good', 'Siap', '0', NULL, NULL, 2, NULL, NULL),
+(3, 2, 'Redi', 'Probolinggo', '2017-04-20 00:02:04', '0', 'Jember', '08333234324', '', '', '', '', '', 'Surabaya', '', 'redi@gmail.com', 5, 'Sip', 'Ok', '0', NULL, NULL, 2, NULL, NULL),
+(4, NULL, 'Akbar', 'Pamekasan', '2017-04-20 00:02:04', '0', 'Pamekasan', '08222222222', '', '', '', '', '', NULL, '', 'akbar@gmail.com', NULL, NULL, NULL, '0', NULL, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,7 +169,20 @@ INSERT INTO `criteria` (`id`, `criteria_id`, `position_id`, `weight`, `weight_va
 (23, 'CRI010', 2, 5, 0.092592592592593, '0'),
 (24, 'CRI011', 2, 2, 0.037037037037037, '0'),
 (25, 'CRI012', 2, 4, 0.074074074074074, '0'),
-(26, 'CRI013', 2, 3, 0.055555555555556, '0');
+(26, 'CRI013', 2, 3, 0.055555555555556, '0'),
+(27, 'CRI001', 4, 4, 0.083333333333333, '0'),
+(28, 'CRI002', 4, 4, 0.083333333333333, '0'),
+(29, 'CRI003', 4, 4, 0.083333333333333, '0'),
+(30, 'CRI004', 4, 3, 0.0625, '0'),
+(31, 'CRI005', 4, 3, 0.0625, '0'),
+(32, 'CRI006', 4, 4, 0.083333333333333, '0'),
+(33, 'CRI007', 4, 4, 0.083333333333333, '0'),
+(34, 'CRI008', 4, 4, 0.083333333333333, '0'),
+(35, 'CRI009', 4, 3, 0.0625, '0'),
+(36, 'CRI010', 4, 4, 0.083333333333333, '0'),
+(37, 'CRI011', 4, 5, 0.10416666666667, '0'),
+(38, 'CRI012', 4, 2, 0.041666666666667, '0'),
+(39, 'CRI013', 4, 4, 0.083333333333333, '0');
 
 -- --------------------------------------------------------
 
@@ -188,7 +202,8 @@ CREATE TABLE `position` (
 
 INSERT INTO `position` (`id`, `name`, `deleted`) VALUES
 (1, 'Manajer', '0'),
-(2, 'Spesialis', '0');
+(2, 'Spesialis', '0'),
+(3, 'Sekertaris', '1');
 
 -- --------------------------------------------------------
 
@@ -256,17 +271,17 @@ ALTER TABLE `calculation`
 -- AUTO_INCREMENT for table `candidate`
 --
 ALTER TABLE `candidate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `criteria`
 --
 ALTER TABLE `criteria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`
 --
