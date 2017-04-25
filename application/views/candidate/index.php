@@ -45,12 +45,14 @@
                 <tbody>
                 <?php if ($candidates): foreach ($candidates as $candidate): ?>
                     <tr>
-                        <td>Belum Ada</td>
+                        <td>
+                            <img style="max-width: 100px" class="img-responsive" src="<?= !empty($candidate->photo) ? base_url('photos/'.$candidate->photo) : base_url('images/user2-160x160.jpg') ?>" alt="Foto Kandidat">
+                        </td>
                         <td><?=$candidate->name?></td>
                         <td><?=$candidate->gender == '0' ? 'Laki-laki': 'Perempuan';?></td>
                         <td><?=$candidate->phone?></td>
                         <td><?=$candidate->email?></td>
-                        <td><span class="label label-<?=$candidate->status === '0' ? 'default' : ($candidate->status === '1' ? 'warning' : 'success') ?>"><?=$candidate->status === '0' ? 'Siap Tahap Pertama' : ($candidate->status === '1' ? 'Siap Tahap Kedua' : 'Selesai Semua Tahap') ?></span></td>
+                        <td><span class="label label-<?=$candidate->status === '0' ? 'default' : ($candidate->status === '1' ? 'warning' : ($candidate->status === '3' ? 'info' : 'success')) ?>"><?=$candidate->status === '0' ? 'Siap Tahap Pertama' : ($candidate->status === '1' ? 'Siap Tahap Kedua' : ($candidate->status === '3' ? 'Sudah di Rekrut' : 'Selesai Semua Tahap')) ?></span></td>
                         <td>
                             <a href="<?=site_url('candidate/detail/'.$candidate->id)?>" class="btn btn-info"><i class="fa fa-info"> Detail</i></a>
                             <a href="<?=site_url('candidate/delete/'.$candidate->id)?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini?')"><i class="fa fa-remove"> Hapus</i></a>
@@ -80,7 +82,7 @@
                                 aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Tambah Kandidat</h4>
                 </div>
-                <form class="form-horizontal" method="post" action="<?=site_url('candidate/store')?>">
+                <form class="form-horizontal" method="post" action="<?=site_url('candidate/store')?>" enctype="multipart/form-data">
                 <div class="modal-body">
                         <div class="box-body">
                             <div class="form-group">

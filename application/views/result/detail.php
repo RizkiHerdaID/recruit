@@ -37,7 +37,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-4">
-                                <img class="img-responsive img-circle" src="<?= base_url() ?>images/user2-160x160.jpg" alt="Foto Kandidat">
+                                <img style="max-width: 200px" class="img-responsive" src="<?= !empty($candidate[0]->photo) ? base_url('photos/'.$candidate[0]->photo) : base_url('images/user2-160x160.jpg') ?>" alt="Foto Pegawai">
                             </div>
                         </div>
                         <div class="form-group">
@@ -160,44 +160,26 @@
                         <div class="form-group">
                             <label for="rencana_penempatan" class="col-sm-4 control-label">Rencana Penempatan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="rencana_penempatan" name="rencana_penempatan" />
+                                <input type="text" class="form-control" id="rencana_penempatan" name="rencana_penempatan" disabled/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="rencana_jabatan" class="col-sm-4 control-label">Rencana Jabatan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="rencana_jabatan" name="rencana_jabatan" />
+                                <input type="text" class="form-control" id="rencana_jabatan" name="rencana_jabatan" disabled/>
                             </div>
-                        </div>
-                        <div class="row col-md-offset-2">
-                            <?php for ($i = 1; $i <= 5; $i++) :?>
-                            <div class="form-group col-md-6">
-                                <label for="nilai" class="col-sm-6 control-label">Kriteria <?=$i?></label>
-                                <div class="col-sm-6">
-                                    <label for="" class="control-label">-</label>
-                                </div>
-                            </div>
-                            <?php endfor; ?>
-                            <?php for ($i = 6; $i <= 10; $i++) :?>
-                            <div class="form-group col-md-6">
-                                <label for="nilai" class="col-sm-6 control-label">Kriteria <?=$i?></label>
-                                <div class="col-sm-6">
-                                    <label for="" class="control-label">-</label>
-                                </div>
-                            </div>
-                            <?php endfor; ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="komentar" class="col-sm-4 control-label">Komentar Pewawancara</label>
                         <div class="col-sm-8">
-                            <textarea name="komentar" class="form-control" rows="5"></textarea>
+                            <textarea name="komentar" class="form-control" rows="5" disabled><?=$candidate[0]->examiner_comment?></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="komentar" class="col-sm-4 control-label">Komentar Penguji</label>
                         <div class="col-sm-8">
-                            <textarea name="komentar" class="form-control" rows="5"></textarea>
+                            <textarea name="komentar" class="form-control" rows="5" disabled><?=$candidate[0]->interviewer_comment?></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -213,11 +195,9 @@
 <script>
     var btnEdit  = document.getElementById('edit');
     var form = document.getElementById('profileForm');
-    btnEdit.addEventListener('click', function(){
-        for(var i=0; i < form.length; i++) {
-            form.elements[i].disabled = false;
-        }
-    });
+    for(var i=0; i < form.length - 2; i++) {
+        form.elements[i].disabled = true;
+    }
     btnEdit.addEventListener('click', function(){
         for(var i=0; i < form.length; i++) {
             form.elements[i].disabled = false;

@@ -37,7 +37,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-4">
-                                <img class="img-responsive img-circle" src="<?= base_url() ?>images/user2-160x160.jpg" alt="Foto Kandidat">
+                                <img style="max-width: 200px" class="img-responsive" src="<?= !empty($candidate[0]->photo) ? base_url('photos/'.$candidate[0]->photo) : base_url('images/user2-160x160.jpg') ?>" alt="Foto Kandidat">
                             </div>
                         </div>
                         <div class="form-group">

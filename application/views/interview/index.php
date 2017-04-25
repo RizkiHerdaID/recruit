@@ -42,14 +42,20 @@
                 <tbody>
                 <?php if ($candidates): foreach ($candidates as $candidate): ?>
                     <tr>
-                        <td>Belum Ada</td>
+                        <td>
+                            <img style="max-width: 100px" class="img-responsive" src="<?= !empty($candidate->photo) ? base_url('photos/'.$candidate->photo) : base_url('images/user2-160x160.jpg') ?>" alt="Foto Kandidat">
+                        </td>
                         <td><?=$candidate->name?></td>
                         <td><?=$candidate->gender == '1' ? 'Laki-laki': 'Perempuan';?></td>
                         <td><?=$candidate->phone?></td>
                         <td><?=$candidate->email?></td>
-                        <td><span class="label label-<?=$candidate->status === '0' ? 'default' : ($candidate->status === '1' ? 'warning' : 'success') ?>"><?=$candidate->status === '0' ? 'Siap Tahap Pertama' : ($candidate->status === '1' ? 'Siap Tahap Kedua' : 'Selesai Semua Tahap') ?></span></td>
+                        <td><span class="label label-<?=$candidate->status === '0' ? 'default' : ($candidate->status === '1' ? 'warning' : ($candidate->status === '3' ? 'info' : 'success')) ?>"><?=$candidate->status === '0' ? 'Siap Tahap Pertama' : ($candidate->status === '1' ? 'Siap Tahap Kedua' : ($candidate->status === '3' ? 'Sudah di Rekrut' : 'Selesai Semua Tahap')) ?></span></td>
                         <td>
+                            <?php if($candidate->status === '0') { ?>
                             <a href="<?=site_url('interview/test/'.$candidate->id)?>" class="btn btn-warning"><i class="fa fa-street-view"> Wawancara</i></a>
+                            <?php } else { ?>
+                            <a href="<?=site_url('interview/edit/'.$candidate->id)?>" class="btn btn-info"><i class="fa fa-pencil"> Detail</i></a>
+                            <?php } ?>
                         </td>
                     </tr>
                 <?php endforeach; endif; ?>

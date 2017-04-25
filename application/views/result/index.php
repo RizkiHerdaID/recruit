@@ -43,7 +43,9 @@
                 <tbody>
                 <?php if ($candidates): foreach ($candidates as $candidate): ?>
                 <tr>
-                    <td>Belum Ada</td>
+                    <td>
+                        <img style="max-width: 100px" class="img-responsive" src="<?= !empty($candidate->photo) ? base_url('photos/'.$candidate->photo) : base_url('images/user2-160x160.jpg') ?>" alt="Foto Kandidat">
+                    </td>
                     <td><?=$candidate->name?></td>
                     <td><?=$candidate->gender == '0' ? 'Laki-laki': 'Perempuan';?></td>
                     <td><?=$candidate->position?></td>

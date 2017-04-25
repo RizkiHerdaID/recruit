@@ -57,6 +57,7 @@ class Candidate_m extends CI_Model
     public function get_all_to_interview()
     {
         $this->db->where('status', 0);
+        $this->db->or_where('status', -1);
         $this->db->where('deleted', '0');
         return $this->db->get('candidate')->result();
     }
@@ -80,7 +81,7 @@ class Candidate_m extends CI_Model
      */
     public function get_all_result()
     {
-        $this->db->select('candidate.id, candidate.name, candidate.gender, position_id, position.name as position, position_score, position_percentage, placement_plan');
+        $this->db->select('candidate.id, candidate.name, candidate.gender, candidate.photo, position_id, position.name as position, position_score, position_percentage, placement_plan');
         $this->db->join('position', 'position.id = candidate.position_id');
         $this->db->where('status', 2);
         $this->db->where('candidate.deleted', '0');
@@ -96,7 +97,7 @@ class Candidate_m extends CI_Model
      */
     public function delete($idCandidate)
     {
-        $this->db->where('status', $idCandidate);
+        $this->db->where('id', $idCandidate);
         return $this->db->update('candidate', array('deleted' => '1'));
     }
 

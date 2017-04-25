@@ -28,8 +28,13 @@
         </div>
         <!-- Body -->
         <div class="box-body row">
-            <form class="form-horizontal col-md-8" method="post">
+            <form class="form-horizontal col-md-8" method="post" action="<?=site_url('employee/update/'.$employee[0]->id)?>" enctype="multipart/form-data">
                 <div class="box-body">
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <img style="max-width: 200px" class="img-responsive" src="<?= !empty($employee[0]->photo) ? base_url('photos/'.$employee[0]->photo) : base_url('images/user2-160x160.jpg') ?>" alt="Foto Pegawai">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="nama" class="col-sm-4 control-label">Nama Lengkap</label>
                         <div class="col-sm-8">
@@ -108,59 +113,59 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" name="tgl_masuk" class="form-control pull-right datepicker">
+                                <input type="text" name="date_started_work" class="form-control pull-right datepicker">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="gaji" class="col-sm-4 control-label">Gaji</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control currency" id="gaji" name="gaji"
-                                   placeholder="Isikan..."/>
+                            <input type="text" class="form-control currency" id="gaji" name="salary"
+                                   value="<?=number_format($employee[0]->salary, 0, ',', '.')?>" placeholder="Isikan..."/>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="riwayat_pendidikan_formal" class="col-sm-4 control-label">Riwayat Pendidikan <br> (Formal)</label>
                     <div class="col-sm-8">
-                        <textarea name="riwayat_pendidikan_formal" class="form-control" rows="5"></textarea>
+                        <textarea name="formal_education" class="form-control" rows="5"><?=$employee[0]->formal_education?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="riwayat_pendidikan_non_formal" class="col-sm-4 control-label">Riwayat Pendidikan
                         <br> (Non-Formal)</label>
                     <div class="col-sm-8">
-                        <textarea name="riwayat_pendidikan_non_formal" class="form-control" rows="5"></textarea>
+                        <textarea name="unformal_education" class="form-control" rows="5"><?=$employee[0]->unformal_education?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="pengalaman_organisasi" class="col-sm-4 control-label">Pengalaman Organisasi</label>
                     <div class="col-sm-8">
-                        <textarea name="pengalaman_organisasi" class="form-control" rows="5"></textarea>
+                        <textarea name="organization_experience" class="form-control" rows="5"><?=$employee[0]->organization_experience?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="pengalaman_kerja" class="col-sm-4 control-label">Pengalaman Kerja</label>
                     <div class="col-sm-8">
-                        <textarea name="pengalaman_kerja" class="form-control" rows="5"></textarea>
+                        <textarea name="work_experience" class="form-control" rows="5"><?=$employee[0]->work_experience?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="kemampuan" class="col-sm-4 control-label">Kemampuan</label>
                     <div class="col-sm-8">
-                        <textarea name="kemampuan" class="form-control" rows="5"></textarea>
+                        <textarea name="skills" class="form-control" rows="5"><?=$employee[0]->skills?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="foto" class="col-sm-4 control-label">Foto</label>
                     <div class="col-sm-8">
-                        <input type="file" id="foto" name="foto">
+                        <input type="file" id="foto" name="photo">
                         <p class="help-block">Tipe berkas yang diterima : *.jpg, *.jpeg, *.png, *.bmp</p>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Simpan Perubahan</button>
+                    <button type="submit" class="btn btn-success">Simpan Perubahan</button>
                 </div>
             </form>
         </div>

@@ -49,6 +49,9 @@ class Interview extends CI_Controller
         $scores = $this->input->post('scores');
         // Ambil Daftar Kriteria
         $criteriaIds = array_keys($this->criteria_m->get_interview_criteria());
+        // Persiapan untuk Cek Jumlah Score & Adakah nilai <= 2
+        $scoreSum = 0;
+        $lessThanEqualTwo = FALSE;
         // Inputkan tiap Nilai sesuai ID Kandidat dan ID Kriteria pada tabel Calculation
         foreach ($scores as $score){
             $data = array(
@@ -56,7 +59,16 @@ class Interview extends CI_Controller
                 'criteria_id' => array_shift($criteriaIds),
                 'score' => $score
             );
+            $scoreSum += $score;
+            if($score <= 2) { // Jika ada Nilai <= 2 jadikan status variabel menjadi TRUE
+                $lessThanEqualTwo = TRUE;
+            }
             $this->calculation_m->insert($data);
+        }
+        // Update Status Kandidat Menjadi -1 yg menandakan ia tidak lulus tahap interview jika kondisi IF terpenuhi
+        if($scoreSum <= 25 || $lessThanEqualTwo) {
+            $dataFail['status'] = -1;
+            $this->candidate_m->update($dataFail, $candidateId);
         }
         $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Calon Wawancara telah di Tambahkan'));
         redirect('interview');

@@ -25,6 +25,7 @@ class Candidate extends CI_Controller
     {
         $data = $this->input->post();
         $data['born_at'] = date('Y-m-d', strtotime($data['born_at']));
+        $data['photo'] = $this->storePhoto();
         if($this->candidate_m->insert($data)) {
             $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Calon Kandidat telah di Tambahkan'));
         } else {
@@ -42,6 +43,9 @@ class Candidate extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = $this->input->post();
+        if(!empty($_FILES['photo']['name'])){
+            $data['photo'] = $this->storePhoto();
+        }
         if($this->candidate_m->update($data, $id)) {
             $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Calon Kandidat telah di Update'));
         } else {
@@ -65,9 +69,36 @@ class Candidate extends CI_Controller
         $this->load->view('layout', $data);
     }
 
-    public function delete()
+    /**
+     * Menghapus Kandidat
+     */
+    public function delete($idCandidate)
     {
-        $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Calon Kandidat telah di Hapus'));
+        if($this->candidate_m->delete($idCandidate)) {
+            $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Calon Kandidat telah di Hapus'));
+        } else {
+            $this->session->set_flashdata('message', array('danger', '<b>Terjadi Kesalahan!</b> Data Calon Kandidat tidak dapat di Hapus'));
+        }
         redirect('candidate');
+    }
+
+    /**
+     * Fungsi Simpan Foto
+     */
+    public function storePhoto()
+    {
+        $config['file_name'] = date('YmdHis');
+        $config['upload_path'] = './photos/';
+        $config['allowed_types'] = 'jpg|jpeg|bmp';
+        $config['max_size'] = 100000;
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload('photo')) {
+            $this->session->set_flashdata('message', array('danger', $this->upload->display_errors()));
+            return false;
+        }else{
+            $file_date = $this->upload->data();
+            $link = $file_date['file_name'];
+            return $link;
+        }
     }
 }

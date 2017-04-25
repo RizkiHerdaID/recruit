@@ -77,7 +77,7 @@
                                 aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Tambah Pegawai</h4>
                 </div>
-                <form class="form-horizontal" method="post" action="<?=site_url('employee/store')?>">
+                <form class="form-horizontal" method="post" action="<?=site_url('employee/store')?>" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="box-body">
                             <div class="form-group">
@@ -167,6 +167,13 @@
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control currency" id="gaji" name="salary"
                                            placeholder="Isikan..."/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="foto" class="col-sm-4 control-label">Foto</label>
+                                <div class="col-sm-8">
+                                    <input type="file" id="foto" name="photo">
+                                    <p class="help-block">Tipe berkas yang diterima : *.jpg, *.jpeg, *.png, *.bmp</p>
                                 </div>
                             </div>
                         </div>

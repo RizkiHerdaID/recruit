@@ -32,6 +32,11 @@
                 <input type="hidden" name="id" value="<?=$candidate[0]->id?>">
                 <div class="box-body">
                     <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <img style="max-width: 200px" class="img-responsive" src="<?= !empty($candidate[0]->photo) ? base_url('photos/'.$candidate[0]->photo) : base_url('images/user2-160x160.jpg') ?>" alt="Foto Kandidat">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="nama" class="col-sm-4 control-label">Nama Lengkap</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="nama" name="name"
