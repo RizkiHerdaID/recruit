@@ -33,20 +33,26 @@
                     <div class="form-group">
                         <label for="nama" class="col-sm-4 control-label">Nama Lengkap</label>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="nama" name="nama"
-                                   placeholder="Isikan..."/>
+                            <input type="text" class="form-control" id="nama" name="name"
+                                   value="<?=$employee[0]->name?>" placeholder="Isikan..."/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="jabatan" class="col-sm-4 control-label">Jabatan</label>
                         <div class="col-sm-8">
-                            <select class="form-control" name="jabatan">
-                                <option>Direktur</option>
-                                <option>Manajer</option>
-                                <option>Spesialis</option>
-                                <option>Analis</option>
-                                <option>Operator</option>
+                            <select class="form-control" name="position_id">
+                                <option value="">-- Pilih Salah Satu --</option>
+                                <?php foreach ($positions as $position): ?>
+                                    <option value="<?=$position->id?>" <?=$position->id !== $employee[0]->position_id ? '' : 'selected'?>><?=$position->name?></option>
+                                <?php endforeach; ?>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tempat_lahir" class="col-sm-4 control-label">Tempat Lahir</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="tempat_lahir" name="born_in"
+                                   value="<?=$employee[0]->born_in?>" placeholder="Isikan..."/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,7 +62,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" name="tgl_lahir" class="form-control pull-right datepicker">
+                                <input type="text" name="born_at" class="form-control pull-right datepicker" value="<?=date('m-d-Y', strtotime($employee[0]->born_at))?>">
                             </div>
                         </div>
                     </div>
@@ -65,12 +71,12 @@
                         <div class="col-sm-8">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="jenis_kelamin"> Laki-laki
+                                    <input type="radio" name="gender" value="0" <?=$employee[0]->gender !== '0' ?'': 'checked'?>> Laki-laki
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="jenis_kelamin"> Perempuan
+                                    <input type="radio" name="gender" value="1" <?=$employee[0]->gender !== '1' ?'': 'checked'?>> Perempuan
                                 </label>
                             </div>
                         </div>
@@ -78,21 +84,21 @@
                     <div class="form-group">
                         <label for="alamat" class="col-sm-4 control-label">Alamat</label>
                         <div class="col-sm-8">
-                            <textarea class="form-control" name="alamat" rows="3" placeholder="Enter ..."></textarea>
+                            <textarea class="form-control" name="address" rows="3" placeholder="Enter ..."><?=$employee[0]->address?></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="telp" class="col-sm-4 control-label">No. Telp</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="telp" name="telp"
-                                   placeholder="Isikan..."/>
+                            <input type="number" class="form-control" id="telp" name="phone"
+                                   value="<?=$employee[0]->phone?>" placeholder="Isikan..."/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email" class="col-sm-4 control-label">E-mail</label>
                         <div class="col-sm-8">
                             <input type="email" class="form-control" id="email" name="email"
-                                   placeholder="Isikan..."/>
+                                   value="<?=$employee[0]->email?>" placeholder="Isikan..."/>
                         </div>
                     </div>
                     <div class="form-group">

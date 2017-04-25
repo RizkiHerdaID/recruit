@@ -55,7 +55,7 @@ class Result extends CI_Controller
     }
 
     /**
-     * @param $resultID
+     * @param $candidateId
      */
     public function detail($candidateId)
     {

@@ -9,6 +9,9 @@ class Employee extends CI_Controller
         $this->load->model('employee_m');
     }
 
+    /**
+     * Menampilkan Semua Data Pegawai
+     */
     function index()
     {
         $data['page'] = 'employee.index';
@@ -17,6 +20,9 @@ class Employee extends CI_Controller
         $this->load->view('layout', $data);
     }
 
+    /**
+     * Menyimpan Data Pegawai
+     */
     public function store()
     {
         $data = $this->input->post();
@@ -30,12 +36,22 @@ class Employee extends CI_Controller
         redirect('employee');
     }
 
+    /**
+     * Menampilkan Detail Pegawai
+     *
+     * @param $employeeId
+     */
     public function detail($employeeId)
     {
+        $data['employee'] = $this->employee_m->get($employeeId);
+        $data['positions'] = $this->position_m->get_all();
         $data['page'] = 'employee.detail';
         $this->load->view('layout', $data);
     }
 
+    /**
+     * Hapus Data Pegawai
+     */
     public function delete()
     {
         $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Pegawai telah di Hapus'));

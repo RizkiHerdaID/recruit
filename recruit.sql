@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 25 Apr 2017 pada 01.30
+-- Generation Time: 25 Apr 2017 pada 01.49
 -- Versi Server: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -91,7 +91,20 @@ INSERT INTO `calculation` (`id`, `candidate_id`, `criteria_id`, `score`) VALUES
 (61, 4, 'CRI010', 5),
 (62, 4, 'CRI011', 4),
 (63, 4, 'CRI012', 5),
-(64, 4, 'CRI013', 4);
+(64, 4, 'CRI013', 4),
+(65, 5, 'CRI001', 4),
+(66, 5, 'CRI002', 5),
+(67, 5, 'CRI003', 5),
+(68, 5, 'CRI004', 4),
+(69, 5, 'CRI005', 5),
+(70, 5, 'CRI006', 5),
+(71, 5, 'CRI007', 4),
+(72, 5, 'CRI008', 4),
+(73, 5, 'CRI009', 5),
+(74, 5, 'CRI010', 5),
+(75, 5, 'CRI011', 4),
+(76, 5, 'CRI012', 4),
+(77, 5, 'CRI013', 5);
 
 -- --------------------------------------------------------
 
@@ -136,7 +149,7 @@ INSERT INTO `candidate` (`id`, `position_id`, `name`, `born_in`, `born_at`, `gen
 (2, 1, 'Ardyan', 'Jember', '2017-04-20 00:02:04', '0', 'Jember', '089893824', '', '', '', '', '', 'Jakarta', '', 'ardyan@gmail.com', 6, 'Good', 'Siap', '0', NULL, NULL, 2, NULL, NULL),
 (3, 2, 'Redi', 'Probolinggo', '2017-04-20 00:02:04', '0', 'Jember', '08333234324', '', '', '', '', '', 'Surabaya', '', 'redi@gmail.com', 5, 'Sip', 'Ok', '0', NULL, NULL, 2, NULL, NULL),
 (4, 1, 'Akbar', 'Pamekasan', '2017-04-25 01:21:15', '0', 'Pamekasan', '08222222222', '', '', '', '', '', '', '', 'akbar@gmail.com', 7, 'Ok', 'Sip', '0', NULL, NULL, 2, NULL, NULL),
-(5, NULL, 'Farida', 'Sumenep', '2017-04-25 01:28:35', '1', 'Probolinggo', '089898989898', '', '', '', '', '', NULL, '', 'farida@farida.com', NULL, NULL, NULL, '0', NULL, NULL, 0, NULL, NULL);
+(5, 2, 'Farida', 'Sumenep', '2017-04-25 01:35:50', '1', 'Probolinggo', '089898989898', '', '', '', '', '', 'Probolinggo', '', 'farida@farida.com', 5, 'Luar BIasa', 'Mantab', '0', NULL, NULL, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -215,15 +228,17 @@ CREATE TABLE `employee` (
   `phone` varchar(15) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `date_started_work` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `salary` int(11) DEFAULT NULL
+  `salary` int(11) DEFAULT NULL,
+  `deleted` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `employee`
 --
 
-INSERT INTO `employee` (`id`, `position_id`, `name`, `born_in`, `born_at`, `gender`, `address`, `phone`, `email`, `date_started_work`, `salary`) VALUES
-(3, 2, 'Destian Yoga Pradipta', 'Bondowoso', '2017-04-21 18:30:30', '0', 'Bondowoso', '0822233332222', 'destian@destian.com', '2017-04-04 17:00:00', 40000);
+INSERT INTO `employee` (`id`, `position_id`, `name`, `born_in`, `born_at`, `gender`, `address`, `phone`, `email`, `date_started_work`, `salary`, `deleted`) VALUES
+(3, 2, 'Destian Yoga Pradipta', 'Bondowoso', '2017-04-21 18:30:30', '0', 'Bondowoso', '0822233332222', 'destian@destian.com', '2017-04-04 17:00:00', 40000, '0'),
+(4, 2, 'Farida', 'Sumenep', '0000-00-00 00:00:00', '1', 'Probolinggo', '08989898989', 'farida@farida.com', '2017-04-18 17:00:00', 5000, '0');
 
 -- --------------------------------------------------------
 
@@ -313,7 +328,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `calculation`
 --
 ALTER TABLE `calculation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 --
 -- AUTO_INCREMENT for table `candidate`
 --
@@ -328,7 +343,7 @@ ALTER TABLE `criteria`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `position`
 --
