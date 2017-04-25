@@ -51,8 +51,8 @@
                     <td><?=substr($candidate->percentage, 0, 5)?> %</td>
                     <td><?=$candidate->placement_plan?></td>
                     <td>
-                        <a href="<?=site_url('result/detail/1')?>" class="btn btn-info btn-sm"><i class="fa fa-info"> Detail</i></a>
-                        <a href="<?=site_url('result/recruit/1')?>" class="btn btn-success btn-sm"><i class="fa fa-check"> Rekrut</i></a>
+                        <a href="<?=site_url('result/detail/'.$candidate->id)?>" class="btn btn-info btn-sm"><i class="fa fa-info"> Detail</i></a>
+                        <a href="<?=site_url('result/recruit/'.$candidate->id)?>" class="btn btn-success btn-sm"><i class="fa fa-check"> Rekrut</i></a>
                     </td>
                 </tr>
                 <?php endforeach; endif;?>

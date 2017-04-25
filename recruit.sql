@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 25 Apr 2017 pada 01.18
+-- Generation Time: 25 Apr 2017 pada 01.30
 -- Versi Server: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -78,7 +78,20 @@ INSERT INTO `calculation` (`id`, `candidate_id`, `criteria_id`, `score`) VALUES
 (48, 3, 'CRI010', 2),
 (49, 3, 'CRI011', 4),
 (50, 3, 'CRI012', 3),
-(51, 3, 'CRI013', 3);
+(51, 3, 'CRI013', 3),
+(52, 4, 'CRI001', 5),
+(53, 4, 'CRI002', 5),
+(54, 4, 'CRI003', 3),
+(55, 4, 'CRI004', 3),
+(56, 4, 'CRI005', 3),
+(57, 4, 'CRI006', 4),
+(58, 4, 'CRI007', 3),
+(59, 4, 'CRI008', 4),
+(60, 4, 'CRI009', 4),
+(61, 4, 'CRI010', 5),
+(62, 4, 'CRI011', 4),
+(63, 4, 'CRI012', 5),
+(64, 4, 'CRI013', 4);
 
 -- --------------------------------------------------------
 
@@ -106,7 +119,7 @@ CREATE TABLE `candidate` (
   `last_education` tinyint(4) DEFAULT NULL,
   `examiner_comment` text DEFAULT NULL,
   `interviewer_comment` text DEFAULT NULL,
-  `deleted` enum('0','1') DEFAULT NULL,
+  `deleted` enum('0','1') DEFAULT '0',
   `interviewed_at` timestamp NULL DEFAULT NULL,
   `examined_at` timestamp NULL DEFAULT NULL,
   `status` tinyint(4) DEFAULT 0,
@@ -122,7 +135,8 @@ INSERT INTO `candidate` (`id`, `position_id`, `name`, `born_in`, `born_at`, `gen
 (1, 2, 'Rizki Herdatullah', 'Sumenep', '2017-04-20 00:02:04', '0', 'Probolinggo', '082234367866', '-', '-', 'AIESEC', 'Mascitra.com', 'Programming', 'Sumenep', '', 'rizkiherda@gmail.com', 5, 'Ok', 'Good', '0', NULL, NULL, 2, NULL, NULL),
 (2, 1, 'Ardyan', 'Jember', '2017-04-20 00:02:04', '0', 'Jember', '089893824', '', '', '', '', '', 'Jakarta', '', 'ardyan@gmail.com', 6, 'Good', 'Siap', '0', NULL, NULL, 2, NULL, NULL),
 (3, 2, 'Redi', 'Probolinggo', '2017-04-20 00:02:04', '0', 'Jember', '08333234324', '', '', '', '', '', 'Surabaya', '', 'redi@gmail.com', 5, 'Sip', 'Ok', '0', NULL, NULL, 2, NULL, NULL),
-(4, NULL, 'Akbar', 'Pamekasan', '2017-04-20 00:02:04', '0', 'Pamekasan', '08222222222', '', '', '', '', '', NULL, '', 'akbar@gmail.com', NULL, NULL, NULL, '0', NULL, NULL, 0, NULL, NULL);
+(4, 1, 'Akbar', 'Pamekasan', '2017-04-25 01:21:15', '0', 'Pamekasan', '08222222222', '', '', '', '', '', '', '', 'akbar@gmail.com', 7, 'Ok', 'Sip', '0', NULL, NULL, 2, NULL, NULL),
+(5, NULL, 'Farida', 'Sumenep', '2017-04-25 01:28:35', '1', 'Probolinggo', '089898989898', '', '', '', '', '', NULL, '', 'farida@farida.com', NULL, NULL, NULL, '0', NULL, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -299,12 +313,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `calculation`
 --
 ALTER TABLE `calculation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
 -- AUTO_INCREMENT for table `candidate`
 --
 ALTER TABLE `candidate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `criteria`
 --

@@ -57,8 +57,9 @@ class Result extends CI_Controller
     /**
      * @param $resultID
      */
-    public function detail($resultID)
+    public function detail($candidateId)
     {
+        $data['candidate'] = $this->candidate_m->get($candidateId);
         $data['page'] = 'result.detail';
         $this->load->view('layout', $data);
     }

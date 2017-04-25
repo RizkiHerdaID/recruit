@@ -24,6 +24,7 @@ class Candidate extends CI_Controller
     public function store()
     {
         $data = $this->input->post();
+        $data['born_at'] = date('Y-m-d', strtotime($data['born_at']));
         if($this->candidate_m->insert($data)) {
             $this->session->set_flashdata('message', array('success', '<b>Berhasil!</b> Data Calon Kandidat telah di Tambahkan'));
         } else {

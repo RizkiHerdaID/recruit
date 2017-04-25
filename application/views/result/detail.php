@@ -32,8 +32,8 @@
         <!-- Body -->
         <div class="box-body tab-content">
             <div class="row active tab-pane" id="profile">
-                <form class="form-horizontal col-md-8" enctype="multipart/form-data" id="profileForm" method="post">
-                    <input type="hidden" name="id" value="">
+                <form class="form-horizontal col-md-8" enctype="multipart/form-data" id="profileForm" method="post" action="<?=site_url('candidate/update/interview')?>">
+                    <input type="hidden" name="id" value="<?=$candidate[0]->id?>">
                     <div class="box-body">
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-4">
@@ -43,15 +43,15 @@
                         <div class="form-group">
                             <label for="nama" class="col-sm-4 control-label">Nama Lengkap</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" id="nama" name="nama"
-                                       disabled/>
+                                <input type="text" class="form-control" id="nama" name="name"
+                                       value="<?=$candidate[0]->name?>" placeholder="Isikan..."/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="tempat_lahir" class="col-sm-4 control-label">Tempat Lahir</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" id="tempat_lahir" name="tempat_lahir"
-                                       disabled/>
+                                <input type="text" class="form-control" id="tempat_lahir" name="born_in"
+                                       value="<?=$candidate[0]->born_in?>"placeholder="Isikan..."/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -61,7 +61,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" name="tgl_lahir" class="form-control pull-right datepicker" disabled>
+                                    <input type="text" name="born_at" class="form-control pull-right datepicker" value="<?=date('m-d-Y', strtotime($candidate[0]->born_at))?>">
                                 </div>
                             </div>
                         </div>
@@ -70,12 +70,12 @@
                             <div class="col-sm-8">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="jenis_kelamin" checked disabled> Laki-laki
+                                        <input type="radio" name="gender" value="0" <?=$candidate[0]->gender !== '0' ?'': 'checked'?>> Laki-laki
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="jenis_kelamin" disabled> Perempuan
+                                        <input type="radio" name="gender" value="1" <?=$candidate[0]->gender !== '1' ?'': 'checked'?>> Perempuan
                                     </label>
                                 </div>
                             </div>
@@ -83,52 +83,52 @@
                         <div class="form-group">
                             <label for="alamat" class="col-sm-4 control-label">Alamat</label>
                             <div class="col-sm-8">
-                                <textarea class="form-control" name="alamat" rows="3"  disabled></textarea>
+                                <textarea class="form-control" name="address" rows="3" placeholder="Enter ..."><?=$candidate[0]->address?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="telp" class="col-sm-4 control-label">No. Telp</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="telp" name="telp"
-                                       disabled/>
+                                <input type="number" class="form-control" id="telp" name="phone"
+                                       value="<?=$candidate[0]->phone?>" placeholder="Isikan..."/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="email" class="col-sm-4 control-label">E-mail</label>
                             <div class="col-sm-8">
                                 <input type="email" class="form-control" id="email" name="email"
-                                       disabled/>
+                                       value="<?=$candidate[0]->email?>" placeholder="Isikan..."/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="riwayat_pendidikan_formal" class="col-sm-4 control-label">Riwayat Pendidikan <br> (Formal)</label>
                             <div class="col-sm-8">
-                                <textarea name="riwayat_pendidikan_formal" class="form-control" rows="5" disabled></textarea>
+                                <textarea name="formal_education" class="form-control" rows="5"><?=$candidate[0]->formal_education?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="riwayat_pendidikan_non_formal" class="col-sm-4 control-label">Riwayat Pendidikan
                                 <br> (Non-Formal)</label>
                             <div class="col-sm-8">
-                                <textarea name="riwayat_pendidikan_non_formal" class="form-control" rows="5" disabled></textarea>
+                                <textarea name="unformal_education" class="form-control" rows="5"><?=$candidate[0]->unformal_education?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="pengalaman_organisasi" class="col-sm-4 control-label">Pengalaman Organisasi</label>
                             <div class="col-sm-8">
-                                <textarea name="pengalaman_organisasi" class="form-control" rows="5" disabled></textarea>
+                                <textarea name="organization_experience" class="form-control" rows="5"><?=$candidate[0]->organization_experience?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="pengalaman_kerja" class="col-sm-4 control-label">Pengalaman Kerja</label>
                             <div class="col-sm-8">
-                                <textarea name="pengalaman_kerja" class="form-control" rows="5" disabled></textarea>
+                                <textarea name="work_experience" class="form-control" rows="5"><?=$candidate[0]->work_experience?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="kemampuan" class="col-sm-4 control-label">Kemampuan</label>
                             <div class="col-sm-8">
-                                <textarea name="kemampuan" class="form-control" rows="5" disabled></textarea>
+                                <textarea name="skills" class="form-control" rows="5"><?=$candidate[0]->skills?></textarea>
                             </div>
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                             <div class="form-group col-md-6">
                                 <label for="nilai" class="col-sm-6 control-label">Kriteria <?=$i?></label>
                                 <div class="col-sm-6">
-                                    <label for="" class="control-label"><?=$i * 13?></label>
+                                    <label for="" class="control-label">-</label>
                                 </div>
                             </div>
                             <?php endfor; ?>
@@ -182,7 +182,7 @@
                             <div class="form-group col-md-6">
                                 <label for="nilai" class="col-sm-6 control-label">Kriteria <?=$i?></label>
                                 <div class="col-sm-6">
-                                    <label for="" class="control-label"><?=$i * 13?></label>
+                                    <label for="" class="control-label">-</label>
                                 </div>
                             </div>
                             <?php endfor; ?>
@@ -213,6 +213,11 @@
 <script>
     var btnEdit  = document.getElementById('edit');
     var form = document.getElementById('profileForm');
+    btnEdit.addEventListener('click', function(){
+        for(var i=0; i < form.length; i++) {
+            form.elements[i].disabled = false;
+        }
+    });
     btnEdit.addEventListener('click', function(){
         for(var i=0; i < form.length; i++) {
             form.elements[i].disabled = false;
