@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 20 Apr 2017 pada 00.12
+-- Generation Time: 25 Apr 2017 pada 01.18
 -- Versi Server: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -144,19 +144,19 @@ CREATE TABLE `criteria` (
 --
 
 INSERT INTO `criteria` (`id`, `criteria_id`, `position_id`, `weight`, `weight_value`, `stage`) VALUES
-(1, 'CRI001', 1, 4, 0.090909090909091, '0'),
-(2, 'CRI002', 1, 4, 0.090909090909091, '0'),
-(3, 'CRI003', 1, 2, 0.045454545454545, '0'),
-(4, 'CRI004', 1, 3, 0.068181818181818, '0'),
-(5, 'CRI005', 1, 3, 0.068181818181818, '0'),
-(6, 'CRI006', 1, 5, 0.11363636363636, '0'),
-(7, 'CRI007', 1, 5, 0.11363636363636, '0'),
-(8, 'CRI008', 1, 4, 0.090909090909091, '0'),
-(9, 'CRI009', 1, 3, 0.068181818181818, '1'),
-(10, 'CRI010', 1, 3, 0.068181818181818, '1'),
-(11, 'CRI011', 1, 3, 0.068181818181818, '1'),
-(12, 'CRI012', 1, 2, 0.045454545454545, '1'),
-(13, 'CRI013', 1, 3, 0.068181818181818, '1'),
+(1, 'CRI001', 1, 5, 0.1063829787234, '0'),
+(2, 'CRI002', 1, 4, 0.085106382978723, '0'),
+(3, 'CRI003', 1, 2, 0.042553191489362, '0'),
+(4, 'CRI004', 1, 3, 0.063829787234043, '0'),
+(5, 'CRI005', 1, 3, 0.063829787234043, '0'),
+(6, 'CRI006', 1, 5, 0.1063829787234, '0'),
+(7, 'CRI007', 1, 5, 0.1063829787234, '0'),
+(8, 'CRI008', 1, 4, 0.085106382978723, '0'),
+(9, 'CRI009', 1, 3, 0.063829787234043, '1'),
+(10, 'CRI010', 1, 3, 0.063829787234043, '1'),
+(11, 'CRI011', 1, 3, 0.063829787234043, '1'),
+(12, 'CRI012', 1, 4, 0.085106382978723, '1'),
+(13, 'CRI013', 1, 3, 0.063829787234043, '1'),
 (14, 'CRI001', 2, 3, 0.055555555555556, '0'),
 (15, 'CRI002', 2, 5, 0.092592592592593, '0'),
 (16, 'CRI003', 2, 4, 0.074074074074074, '0'),
@@ -183,6 +183,33 @@ INSERT INTO `criteria` (`id`, `criteria_id`, `position_id`, `weight`, `weight_va
 (37, 'CRI011', 4, 5, 0.10416666666667, '0'),
 (38, 'CRI012', 4, 2, 0.041666666666667, '0'),
 (39, 'CRI013', 4, 4, 0.083333333333333, '0');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `employee`
+--
+
+CREATE TABLE `employee` (
+  `id` int(11) NOT NULL,
+  `position_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `born_in` varchar(255) DEFAULT NULL,
+  `born_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `gender` enum('0','1') DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `date_started_work` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `salary` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `employee`
+--
+
+INSERT INTO `employee` (`id`, `position_id`, `name`, `born_in`, `born_at`, `gender`, `address`, `phone`, `email`, `date_started_work`, `salary`) VALUES
+(3, 2, 'Destian Yoga Pradipta', 'Bondowoso', '2017-04-21 18:30:30', '0', 'Bondowoso', '0822233332222', 'destian@destian.com', '2017-04-04 17:00:00', 40000);
 
 -- --------------------------------------------------------
 
@@ -247,6 +274,12 @@ ALTER TABLE `criteria`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `employee`
+--
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `position`
 --
 ALTER TABLE `position`
@@ -278,10 +311,15 @@ ALTER TABLE `candidate`
 ALTER TABLE `criteria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
+-- AUTO_INCREMENT for table `employee`
+--
+ALTER TABLE `employee`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
