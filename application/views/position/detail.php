@@ -29,8 +29,7 @@
         <!-- Body -->
         <div class="box-body row">
             <div class="box-body">
-                <form class="form-horizontal" method="post" action="<?=site_url('position/update/'.$this->uri->segment(3, 0))?>">
-                    <input type="hidden" value="<?=$position[0]->id?>">
+                <form class="form-horizontal" method="post" action="<?=site_url('position/update/'.$position[0]->id)?>">
                     <div class="box-body" id="daftarKriteria">
                         <div class="row">
                             <div class="form-group col-md-6">
